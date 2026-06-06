@@ -33,7 +33,12 @@ function setupEventListeners() {
     // Suggested questions
     document.querySelectorAll('.suggested-item').forEach(button => {
         button.addEventListener('click', (e) => {
-            const question = e.target.getAttribute('data-question');
+            const btn = e.currentTarget;
+            if (btn.dataset.action === 'not-started') {
+                alert('El chatbot no está arrancado.');
+                return;
+            }
+            const question = btn.getAttribute('data-question');
             chatInput.value = question;
             sendMessage();
         });
